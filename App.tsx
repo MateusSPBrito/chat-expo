@@ -1,20 +1,42 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Login from './src/screens/login';
+import Chat from './src/screens/chat';
+import creatLogin from './src/screens/creatLogin';
 
-export default function App() {
+
+const Stack = createStackNavigator();
+
+function MyStack() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Stack.Navigator initialRouteName='Login'>
+      <Stack.Screen name="Login" component={Login}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen name="creatLogin" component={creatLogin}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen name="Chat" component={Chat}
+        options={{
+          headerShown: false
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  )
+}
+
